@@ -12,7 +12,7 @@
         android:id="@+id/resultTextView"
         style="@style/CalculationWindow"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/border"
         android:fontFamily="@font/archivo_black"
@@ -50,7 +50,7 @@
                 app:backgroundTint="@null" />
 
             <Button
-                android:id="@+id/buttonPierwiastek"
+                android:id="@+id/buttonRoot"
                 style="@style/button"
                 android:layout_weight="1"
                 android:background="@drawable/border_yellow"
@@ -58,7 +58,7 @@
                 app:backgroundTint="@null" />
 
             <Button
-                android:id="@+id/buttonToSecond"
+                android:id="@+id/buttonSquare"
                 style="@style/button"
                 android:layout_weight="1"
                 android:background="@drawable/border_yellow"
