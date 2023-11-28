@@ -17,7 +17,7 @@
         android:background="@drawable/border"
         android:fontFamily="@font/archivo_black"
         android:gravity="end"
-        android:text="1+2"
+        android:text="21.37"
         android:textSize="40dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonsContainer"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,46 +32,44 @@
         android:background="@drawable/container_border"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/resultTextView">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <LinearLayout
             android:id="@+id/buttonsRow1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="@id/buttonsContainer">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/buttonC"
                 style="@style/button"
                 android:layout_weight="1"
-                android:background="@drawable/border"
+                android:background="@drawable/border_yellow"
                 android:text="C"
                 app:backgroundTint="@null" />
 
             <Button
-                android:id="@+id/buttonPlusMinus"
+                android:id="@+id/buttonPierwiastek"
                 style="@style/button"
                 android:layout_weight="1"
-                android:background="@drawable/border"
-                android:text="+/-"
+                android:background="@drawable/border_yellow"
+                android:text="√"
                 app:backgroundTint="@null" />
 
             <Button
-                android:id="@+id/buttonPercent"
+                android:id="@+id/buttonToSecond"
                 style="@style/button"
                 android:layout_weight="1"
-                android:background="@drawable/border"
-                android:text="%"
+                android:background="@drawable/border_yellow"
+                android:text="^2"
                 app:backgroundTint="@null" />
 
             <Button
                 android:id="@+id/buttonDivide"
                 style="@style/button"
                 android:layout_weight="1"
-                android:background="@drawable/border"
+                android:background="@drawable/border_orange"
                 android:text="/"
                 app:backgroundTint="@null" />
 
@@ -81,8 +79,7 @@
             android:id="@+id/buttonsRow2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="@id/buttonsContainer">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button7"
@@ -112,7 +109,7 @@
                 android:id="@+id/buttonMultiply"
                 style="@style/button"
                 android:layout_weight="1"
-                android:background="@drawable/border"
+                android:background="@drawable/border_orange"
                 android:text="x"
                 app:backgroundTint="@null" />
 
@@ -122,8 +119,7 @@
             android:id="@+id/buttonsRow3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="@id/buttonsContainer">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button4"
@@ -153,7 +149,7 @@
                 android:id="@+id/buttonMinus"
                 style="@style/button"
                 android:layout_weight="1"
-                android:background="@drawable/border"
+                android:background="@drawable/border_orange"
                 android:text="-"
                 app:backgroundTint="@null" />
 
@@ -163,8 +159,7 @@
             android:id="@+id/buttonsRow4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="@id/buttonsContainer">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button1"
@@ -194,7 +189,7 @@
                 android:id="@+id/buttonPlus"
                 style="@style/button"
                 android:layout_weight="1"
-                android:background="@drawable/border"
+                android:background="@drawable/border_orange"
                 android:text="+"
                 app:backgroundTint="@null" />
 
@@ -204,18 +199,23 @@
             android:id="@+id/buttonsRow5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="@id/buttonsContainer">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/button0"
                 style="@style/button"
-                android:layout_width="175dp"
                 android:layout_weight="1"
                 android:background="@drawable/border"
                 android:text="0"
                 app:backgroundTint="@null" />
 
+            <Button
+                android:id="@+id/buttonPlusMinus"
+                style="@style/button"
+                android:layout_weight="1"
+                android:background="@drawable/border"
+                android:text="+/-"
+                app:backgroundTint="@null" />
 
             <Button
                 android:id="@+id/buttonDot"
@@ -229,7 +229,7 @@
                 android:id="@+id/buttonEquals"
                 style="@style/button"
                 android:layout_weight="1"
-                android:background="@drawable/border"
+                android:background="@drawable/border_purple"
                 android:text="="
                 app:backgroundTint="@null" />
 
@@ -238,4 +238,3 @@
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
