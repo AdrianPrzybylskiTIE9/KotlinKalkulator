@@ -4,15 +4,262 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/primaryBackground"
+    >
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/resultTextView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:fontFamily="@font/archivo_black"
+        android:gravity="end"
+        android:textSize="40dp"
+        android:text="1+2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/CalculationWindow"
+        android:background="@drawable/border"
+        android:layout_marginVertical="50dp"
+        />
+
+    <LinearLayout
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/resultTextView"
+        android:background="@drawable/container_border"
+        android:id="@+id/buttonsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/ButtonsContainer"
+        >
+
+        <LinearLayout
+            android:id="@+id/buttonsRow1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@id/buttonsContainer"
+            >
+
+            <Button
+                android:id="@+id/buttonC"
+                android:text="C"
+                android:layout_weight="1"
+                app:backgroundTint="@null"
+                android:background="@drawable/border"
+                style="@style/button"
+                />
+
+            <Button
+                android:id="@+id/buttonPlusMinus"
+                android:text="+/-"
+                android:layout_weight="1"
+                app:backgroundTint="@null"
+                android:background="@drawable/border"
+                style="@style/button"
+                />
+
+            <Button
+                android:id="@+id/buttonPercent"
+                android:text="%"
+                android:layout_weight="1"
+                app:backgroundTint="@null"
+                android:background="@drawable/border"
+                style="@style/button"
+                />
+
+            <Button
+                android:id="@+id/buttonDivide"
+                android:text="/"
+                android:layout_weight="1"
+                app:backgroundTint="@null"
+                android:background="@drawable/border"
+                style="@style/button"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttonsRow2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@id/buttonsContainer"
+            >
+
+            <Button
+                android:id="@+id/button7"
+                android:text="7"
+                android:layout_weight="1"
+                app:backgroundTint="@null"
+                android:background="@drawable/border"
+                style="@style/button"
+                />
+
+            <Button
+                android:id="@+id/button8"
+                android:text="8"
+                android:layout_weight="1"
+                app:backgroundTint="@null"
+                android:background="@drawable/border"
+                style="@style/button"
+                />
+
+            <Button
+                android:id="@+id/button9"
+                android:text="9"
+                android:layout_weight="1"
+                app:backgroundTint="@null"
+                android:background="@drawable/border"
+                style="@style/button"
+                />
+
+            <Button
+                android:id="@+id/buttonMultiply"
+                android:text="x"
+                android:layout_weight="1"
+                app:backgroundTint="@null"
+                android:background="@drawable/border"
+                style="@style/button"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttonsRow3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@id/buttonsContainer"
+            >
+
+            <Button
+                android:id="@+id/button4"
+                android:text="4"
+                android:layout_weight="1"
+                app:backgroundTint="@null"
+                android:background="@drawable/border"
+                style="@style/button"
+                />
+
+            <Button
+                android:id="@+id/button5"
+                android:text="5"
+                android:layout_weight="1"
+                app:backgroundTint="@null"
+                android:background="@drawable/border"
+                style="@style/button"
+                />
+
+            <Button
+                android:id="@+id/button6"
+                android:text="6"
+                android:layout_weight="1"
+                app:backgroundTint="@null"
+                android:background="@drawable/border"
+                style="@style/button"
+                />
+
+            <Button
+                android:id="@+id/buttonMinus"
+                android:text="-"
+                android:layout_weight="1"
+                app:backgroundTint="@null"
+                android:background="@drawable/border"
+                style="@style/button"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttonsRow4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@id/buttonsContainer"
+            >
+
+            <Button
+                android:id="@+id/button1"
+                android:text="1"
+                android:layout_weight="1"
+                app:backgroundTint="@null"
+                android:background="@drawable/border"
+                style="@style/button"
+                />
+
+            <Button
+                android:id="@+id/button2"
+                android:text="2"
+                android:layout_weight="1"
+                app:backgroundTint="@null"
+                android:background="@drawable/border"
+                style="@style/button"
+                />
+
+            <Button
+                android:id="@+id/button3"
+                android:text="3"
+                android:layout_weight="1"
+                app:backgroundTint="@null"
+                android:background="@drawable/border"
+                style="@style/button"
+                />
+
+            <Button
+                android:id="@+id/buttonPlus"
+                android:text="+"
+                android:layout_weight="1"
+                app:backgroundTint="@null"
+                android:background="@drawable/border"
+                style="@style/button"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttonsRow5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@id/buttonsContainer"
+            >
+
+            <Button
+                android:id="@+id/button0"
+                android:text="0"
+                android:layout_weight="1"
+                app:backgroundTint="@null"
+                android:background="@drawable/border"
+                android:layout_width="175dp"
+                style="@style/button"
+                />
+
+
+            <Button
+                android:id="@+id/buttonDot"
+                android:text="."
+                android:layout_weight="1"
+                app:backgroundTint="@null"
+                android:background="@drawable/border"
+                style="@style/button"
+                />
+
+            <Button
+                android:id="@+id/buttonEquals"
+                android:text="="
+                android:layout_weight="1"
+                app:backgroundTint="@null"
+                android:background="@drawable/border"
+                style="@style/button"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
