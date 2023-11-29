@@ -17,7 +17,7 @@
         android:background="@drawable/border"
         android:fontFamily="@font/archivo_black"
         android:gravity="end"
-        android:text="21.37"
+        android:text="0"
         android:textSize="40dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonsContainer"
         app:layout_constraintEnd_toEndOf="parent"

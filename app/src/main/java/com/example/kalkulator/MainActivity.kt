@@ -5,12 +5,13 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import kotlin.math.sqrt
+import kotlin.reflect.typeOf
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var resultTextView: TextView;
     private var prevNumber: String = "";
-    private var currNumber: String = "";
+    private var currNumber: String = "0";
     private var operator: String = "";
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,7 +71,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun numberClick(value: CharSequence){
         if (value == "." && currNumber.contains(".")) return
-        currNumber += value.toString()
+        else if ((currNumber == "0" && value != ".")) {
+            currNumber = value.toString()
+        }else{
+            currNumber += value.toString()
+        }
         updateTextView(currNumber)
     }
 
@@ -84,8 +89,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun calculate(){
         if(prevNumber.isNotEmpty() && currNumber.isNotEmpty()){
-            val num1 = prevNumber.toDouble()
+            val num1 = if(prevNumber !== ""){
+                prevNumber.toDouble()
+            }else{
+                currNumber.toDouble()
+            }
             val num2 = currNumber.toDouble()
+//            println("num1 = $num1 num2 = $num2")
             var result: Double = 0.0
 
             when(operator){
@@ -96,8 +106,8 @@ class MainActivity : AppCompatActivity() {
             }
 
             updateTextView(result.toString())
-            prevNumber = result.toString()
-            currNumber = ""
+            prevNumber = ""
+            currNumber = result.toString()
         }
     }
 
@@ -121,8 +131,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun clearTextView(){
-        currNumber = ""
-        updateTextView("")
+        currNumber = "0"
+        updateTextView("0")
     }
 
     private fun convertSign(){ //to fix
