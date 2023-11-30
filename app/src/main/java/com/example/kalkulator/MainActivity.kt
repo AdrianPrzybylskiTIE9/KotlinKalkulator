@@ -134,6 +134,7 @@ class MainActivity : AppCompatActivity() {
     private fun clearTextView(){
         currNumber = "0"
         prevNumber=""
+        operator=""
         updateTextView("0", "")
     }
 
@@ -151,11 +152,11 @@ class MainActivity : AppCompatActivity() {
             val truncatedText = value.substring(0, maxLength)
             val truncatedPrevText = prevValue.substring(0, maxLength)
             resultTextView.text = truncatedText
-            prevTextView.text = truncatedPrevText
+            prevTextView.text = "$truncatedPrevText$operator"
             return
         }
         resultTextView.text = value
-        prevTextView.text = "$prevValue$operator"
+        prevTextView.text = if(prevNumber.isNotEmpty()) "$prevValue$operator" else ""
     }
 
 }
