@@ -10,6 +10,7 @@ import kotlin.reflect.typeOf
 class MainActivity : AppCompatActivity() {
 
     lateinit var resultTextView: TextView;
+    lateinit var prevTextView: TextView;
     private var prevNumber: String = "";
     private var currNumber: String = "0";
     private var operator: String = "";
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         //Global
         resultTextView = findViewById(R.id.resultTextView);
+        prevTextView = findViewById(R.id.prevTextView);
 
         // Numbers
         var btn0 = findViewById<Button>(R.id.button0)
@@ -76,7 +78,7 @@ class MainActivity : AppCompatActivity() {
         }else{
             currNumber += value.toString()
         }
-        updateTextView(currNumber)
+        updateTextView(currNumber, prevNumber)
     }
 
     private fun operatorClick(op: String){
@@ -88,14 +90,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun calculate(){
-        if(prevNumber.isNotEmpty() && currNumber.isNotEmpty()){
-            val num1 = if(prevNumber !== ""){
-                prevNumber.toDouble()
-            }else{
-                currNumber.toDouble()
-            }
-            val num2 = currNumber.toDouble()
-//            println("num1 = $num1 num2 = $num2")
+        if(prevNumber.isNotEmpty() || currNumber.isNotEmpty()){
+            val num1 = if(prevNumber.isNotEmpty()) prevNumber.toDouble() else currNumber.toDouble()
+            val num2 = if(currNumber.isNotEmpty()) currNumber.toDouble() else prevNumber.toDouble()
+
+
+
             var result: Double = 0.0
 
             when(operator){
@@ -105,9 +105,9 @@ class MainActivity : AppCompatActivity() {
                 "/" -> result = num1 / num2
             }
 
-            updateTextView(result.toString())
-            prevNumber = ""
+            prevNumber = num1.toString()
             currNumber = result.toString()
+            updateTextView(currNumber, prevNumber)
         }
     }
 
@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity() {
             var num = currNumber.toDouble()
             var result = num * num
             currNumber = result.toString()
-            updateTextView(currNumber)
+            updateTextView(currNumber, prevNumber)
 
         }
     }
@@ -126,36 +126,35 @@ class MainActivity : AppCompatActivity() {
             var num = currNumber.toDouble()
             var result = sqrt(num)
             currNumber = result.toString()
-            updateTextView(currNumber.toString())
+            updateTextView(currNumber.toString(), prevNumber)
         }
     }
 
     private fun clearTextView(){
         currNumber = "0"
-        updateTextView("0")
+        prevNumber=""
+        updateTextView("0", "")
     }
 
     private fun convertSign(){
         if(currNumber.isNotEmpty()){
             var num = currNumber.toDouble()
-            currNumber = if(num != 0.0){
-                (-num).toString()
-            }else{
-                currNumber
-            }
-            updateTextView(currNumber)
+            currNumber = if(num != 0.0) (-num).toString() else currNumber
+            updateTextView(currNumber, prevNumber)
         }
     }
 
-    private fun updateTextView(text: String){
+    private fun updateTextView(value: String, prevValue: String){
         var maxLength = 11
-        if(text.length > maxLength){
-            val truncatedText = text.substring(0, maxLength)
+        if((value.length > maxLength && prevValue.length > maxLength)){
+            val truncatedText = value.substring(0, maxLength)
+            val truncatedPrevText = prevValue.substring(0, maxLength)
             resultTextView.text = truncatedText
+            prevTextView.text = truncatedPrevText
             return
         }
-        resultTextView.text = text
-        println("currNum = $currNumber prevNum = $prevNumber")
+        resultTextView.text = value
+        prevTextView.text = "$prevValue$operator"
     }
 
 }

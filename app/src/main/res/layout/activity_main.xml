@@ -8,21 +8,57 @@
     android:background="@color/primaryBackground"
     >
 
-    <TextView
-        android:id="@+id/resultTextView"
-        style="@style/CalculationWindow"
+    <LinearLayout
         android:layout_width="0dp"
         android:layout_height="200dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/border"
-        android:fontFamily="@font/archivo_black"
-        android:gravity="end"
-        android:text="0"
-        android:textSize="40dp"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="56dp"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/buttonsContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/prevTextView"
+            style="@style/CalculationPrev"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:fontFamily="@font/archivo_black"
+            />
+
+        <TextView
+            android:id="@+id/resultTextView"
+            style="@style/CalculationResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:fontFamily="@font/archivo_black"
+            />
+
+    </LinearLayout>
+
+<!--    <TextView-->
+<!--        android:id="@+id/resultTextView"-->
+<!--        style="@style/CalculationWindow"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="200dp"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        android:background="@drawable/border"-->
+<!--        android:fontFamily="@font/archivo_black"-->
+<!--        android:gravity="end"-->
+<!--        android:text="0"-->
+<!--        android:textSize="40dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/buttonsContainer"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <LinearLayout
         android:id="@+id/buttonsContainer"
