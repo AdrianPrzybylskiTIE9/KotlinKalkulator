@@ -85,6 +85,7 @@ class MainActivity : AppCompatActivity() {
         if(currNumber.isNotEmpty()){
             operator = op;
             prevNumber = currNumber;
+            updateTextView(currNumber, prevNumber)
             currNumber = ""
         }
     }
