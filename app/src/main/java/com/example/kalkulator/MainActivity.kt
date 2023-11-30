@@ -121,7 +121,9 @@ class MainActivity : AppCompatActivity() {
         if(currNumber.isNotEmpty()){
             val num = currNumber.toDouble()
             val result = num * num
+            prevNumber = num.toString()
             currNumber = result.toString()
+            operator = "**2"
             updateTextView(currNumber, prevNumber)
 
         }
@@ -131,7 +133,9 @@ class MainActivity : AppCompatActivity() {
         if(currNumber.isNotEmpty()){
             val num = currNumber.toDouble()
             val result = sqrt(num)
+            prevNumber = num.toString()
             currNumber = result.toString()
+            operator = "√"
             updateTextView(currNumber, prevNumber)
         }
     }
@@ -164,7 +168,9 @@ class MainActivity : AppCompatActivity() {
             return
         }
         resultTextView.text = formattedValue
-        prevTextView.text = if(formattedPrevValue.isNotEmpty()) "$formattedPrevValue$operator" else ""
+        prevTextView.text = if(formattedPrevValue.isNotEmpty()) {
+            if(operator == "√") "$operator$formattedPrevValue" else "$formattedPrevValue$operator"
+        } else ""
     }
 
 }
