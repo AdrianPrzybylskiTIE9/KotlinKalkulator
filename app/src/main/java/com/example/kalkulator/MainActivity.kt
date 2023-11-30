@@ -135,10 +135,10 @@ class MainActivity : AppCompatActivity() {
         updateTextView("0")
     }
 
-    private fun convertSign(){ //to fix
+    private fun convertSign(){
         if(currNumber.isNotEmpty()){
             var num = currNumber.toDouble()
-            var currNumber = if(num != 0.0){
+            currNumber = if(num != 0.0){
                 (-num).toString()
             }else{
                 currNumber
@@ -155,6 +155,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
         resultTextView.text = text
+        println("currNum = $currNumber prevNum = $prevNumber")
     }
 
 }
