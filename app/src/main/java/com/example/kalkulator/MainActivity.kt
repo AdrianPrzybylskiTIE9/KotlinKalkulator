@@ -5,65 +5,64 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import kotlin.math.sqrt
-import kotlin.reflect.typeOf
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var resultTextView: TextView;
-    lateinit var prevTextView: TextView;
-    private var prevNumber: String = "";
-    private var currNumber: String = "0";
-    private var operator: String = "";
+    private lateinit var resultTextView: TextView
+    private lateinit var prevTextView: TextView
+    private var prevNumber: String = ""
+    private var currNumber: String = "0"
+    private var operator: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         //Global
-        resultTextView = findViewById(R.id.resultTextView);
-        prevTextView = findViewById(R.id.prevTextView);
+        resultTextView = findViewById(R.id.resultTextView)
+        prevTextView = findViewById(R.id.prevTextView)
 
         // Numbers
-        var btn0 = findViewById<Button>(R.id.button0)
-        var btn1 = findViewById<Button>(R.id.button1)
-        var btn2 = findViewById<Button>(R.id.button2)
-        var btn3 = findViewById<Button>(R.id.button3)
-        var btn4 = findViewById<Button>(R.id.button4)
-        var btn5 = findViewById<Button>(R.id.button5)
-        var btn6 = findViewById<Button>(R.id.button6)
-        var btn7 = findViewById<Button>(R.id.button7)
-        var btn8 = findViewById<Button>(R.id.button8)
-        var btn9 = findViewById<Button>(R.id.button9)
-        var btnDot = findViewById<Button>(R.id.buttonDot)
+        val btn0 = findViewById<Button>(R.id.button0)
+        val btn1 = findViewById<Button>(R.id.button1)
+        val btn2 = findViewById<Button>(R.id.button2)
+        val btn3 = findViewById<Button>(R.id.button3)
+        val btn4 = findViewById<Button>(R.id.button4)
+        val btn5 = findViewById<Button>(R.id.button5)
+        val btn6 = findViewById<Button>(R.id.button6)
+        val btn7 = findViewById<Button>(R.id.button7)
+        val btn8 = findViewById<Button>(R.id.button8)
+        val btn9 = findViewById<Button>(R.id.button9)
+        val btnDot = findViewById<Button>(R.id.buttonDot)
 
-        var buttons = arrayListOf<Button>(btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8,btn9, btnDot)
+        val buttons = arrayListOf<Button>(btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8,btn9, btnDot)
         buttons.forEach { button ->
             button.setOnClickListener{
-                var value = button.text
+                val value = button.text
                 numberClick(value)
             }
         }
 
         // Functions
-        var clearBtn = findViewById<Button>(R.id.buttonC)
-        var rootBtn = findViewById<Button>(R.id.buttonRoot)
-        var squareBtn = findViewById<Button>(R.id.buttonSquare)
-        var divideBtn = findViewById<Button>(R.id.buttonDivide)
-        var multiplyBtn = findViewById<Button>(R.id.buttonMultiply)
-        var minusBtn = findViewById<Button>(R.id.buttonMinus)
-        var plusBtn = findViewById<Button>(R.id.buttonPlus)
-        var equalsBtn = findViewById<Button>(R.id.buttonEquals)
-        var plusMinusBtn = findViewById<Button>(R.id.buttonPlusMinus)
+        val clearBtn = findViewById<Button>(R.id.buttonC)
+        val rootBtn = findViewById<Button>(R.id.buttonRoot)
+        val squareBtn = findViewById<Button>(R.id.buttonSquare)
+        val divideBtn = findViewById<Button>(R.id.buttonDivide)
+        val multiplyBtn = findViewById<Button>(R.id.buttonMultiply)
+        val minusBtn = findViewById<Button>(R.id.buttonMinus)
+        val plusBtn = findViewById<Button>(R.id.buttonPlus)
+        val equalsBtn = findViewById<Button>(R.id.buttonEquals)
+        val plusMinusBtn = findViewById<Button>(R.id.buttonPlusMinus)
 
-        var operatorButtons = arrayListOf<Button>(rootBtn, squareBtn, divideBtn, multiplyBtn, minusBtn, plusBtn)
+        val operatorButtons = arrayListOf<Button>(rootBtn, squareBtn, divideBtn, multiplyBtn, minusBtn, plusBtn)
         operatorButtons.forEach { button ->
             button.setOnClickListener{
-                var buttonOperator = button.text.toString()
+                val buttonOperator = button.text.toString()
                 operatorClick(buttonOperator)
             }
         }
 
-        clearBtn.setOnClickListener { clearTextView() }
+        clearBtn.setOnClickListener { clearNumbers() }
         equalsBtn.setOnClickListener { calculate() }
         squareBtn.setOnClickListener { square() }
         rootBtn.setOnClickListener { root() }
@@ -83,8 +82,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun operatorClick(op: String){
         if(currNumber.isNotEmpty()){
-            operator = op;
-            prevNumber = currNumber;
+            operator = op
+            prevNumber = currNumber
             updateTextView(currNumber, prevNumber)
             currNumber = ""
         }
@@ -95,15 +94,20 @@ class MainActivity : AppCompatActivity() {
             val num1 = if(prevNumber.isNotEmpty()) prevNumber.toDouble() else currNumber.toDouble()
             val num2 = if(currNumber.isNotEmpty()) currNumber.toDouble() else prevNumber.toDouble()
 
-
-
-            var result: Double = 0.0
+            var result = 0.0
 
             when(operator){
                 "+" -> result = num1 + num2
                 "-" -> result = num1 - num2
                 "x" -> result = num1 * num2
-                "/" -> result = num1 / num2
+                "/" -> {
+                    if (num2 != 0.0) result = num1 / num2 else {
+                        prevTextView.text = "Division by zero"
+                        resultTextView.text = "Error"
+                        clearNumbers()
+                        return
+                    }
+                }
             }
 
             prevNumber = num1.toString()
@@ -114,8 +118,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun square(){
         if(currNumber.isNotEmpty()){
-            var num = currNumber.toDouble()
-            var result = num * num
+            val num = currNumber.toDouble()
+            val result = num * num
             currNumber = result.toString()
             updateTextView(currNumber, prevNumber)
 
@@ -124,14 +128,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun root(){
         if(currNumber.isNotEmpty()){
-            var num = currNumber.toDouble()
-            var result = sqrt(num)
+            val num = currNumber.toDouble()
+            val result = sqrt(num)
             currNumber = result.toString()
-            updateTextView(currNumber.toString(), prevNumber)
+            updateTextView(currNumber, prevNumber)
         }
     }
 
-    private fun clearTextView(){
+    private fun clearNumbers(){
         currNumber = "0"
         prevNumber=""
         operator=""
@@ -140,23 +144,26 @@ class MainActivity : AppCompatActivity() {
 
     private fun convertSign(){
         if(currNumber.isNotEmpty()){
-            var num = currNumber.toDouble()
+            val num = currNumber.toDouble()
             currNumber = if(num != 0.0) (-num).toString() else currNumber
             updateTextView(currNumber, prevNumber)
         }
     }
 
     private fun updateTextView(value: String, prevValue: String){
-        var maxLength = 11
-        if((value.length > maxLength && prevValue.length > maxLength)){
-            val truncatedText = value.substring(0, maxLength)
-            val truncatedPrevText = prevValue.substring(0, maxLength)
-            resultTextView.text = truncatedText
-            prevTextView.text = "$truncatedPrevText$operator"
+        var formattedValue = if (value.isNotEmpty() && value.toDouble() % 1 == 0.0) value.toDouble().toInt().toString() else value
+        var formattedPrevValue = if(prevValue.isNotEmpty() && prevValue.toDouble() % 1 == 0.0) prevValue.toDouble().toInt().toString() else prevValue
+
+        val maxLength = 11
+        if((formattedValue.length > maxLength && prevValue.length > maxLength)){
+            formattedValue = formattedValue.substring(0, maxLength)
+            formattedPrevValue = formattedPrevValue.substring(0, maxLength)
+            resultTextView.text = formattedValue
+            prevTextView.text = "$formattedPrevValue$operator"
             return
         }
-        resultTextView.text = value
-        prevTextView.text = if(prevNumber.isNotEmpty()) "$prevValue$operator" else ""
+        resultTextView.text = formattedValue
+        prevTextView.text = if(formattedPrevValue.isNotEmpty()) "$formattedPrevValue$operator" else ""
     }
 
 }
