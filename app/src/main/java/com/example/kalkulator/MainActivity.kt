@@ -102,9 +102,9 @@ class MainActivity : AppCompatActivity() {
                 "x" -> result = num1 * num2
                 "/" -> {
                     if (num2 != 0.0) result = num1 / num2 else {
+                        clearNumbers()
                         prevTextView.text = "Division by zero"
                         resultTextView.text = "Error"
-                        clearNumbers()
                         return
                     }
                 }
@@ -151,8 +151,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateTextView(value: String, prevValue: String){
-        var formattedValue = if (value.isNotEmpty() && value.toDouble() % 1 == 0.0) value.toDouble().toInt().toString() else value
-        var formattedPrevValue = if(prevValue.isNotEmpty() && prevValue.toDouble() % 1 == 0.0) prevValue.toDouble().toInt().toString() else prevValue
+        var formattedValue = if (value.isNotEmpty() && value.toDoubleOrNull()?.rem(1) == 0.0) value.toDouble().toInt().toString() else value
+        var formattedPrevValue = if(prevValue.isNotEmpty() && prevValue.toDoubleOrNull()?.rem(1) == 0.0) prevValue.toDouble().toInt().toString() else prevValue
 
         val maxLength = 11
         if((formattedValue.length > maxLength && prevValue.length > maxLength)){
