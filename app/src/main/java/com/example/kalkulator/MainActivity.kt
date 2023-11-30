@@ -108,6 +108,7 @@ class MainActivity : AppCompatActivity() {
                         return
                     }
                 }
+                else -> return
             }
 
             prevNumber = num1.toString()
